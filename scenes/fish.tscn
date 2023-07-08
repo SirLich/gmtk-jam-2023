@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdgx75xx62o4k"]
+
+[ext_resource type="PackedScene" uid="uid://kpoodi2a1tf3" path="res://models/fish.blend" id="1_mv5i1"]
+[ext_resource type="Shader" path="res://shaders/my_underwater.gdshader" id="2_8w8ts"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ip8er"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ln54o"]
+render_priority = 0
+shader = ExtResource("2_8w8ts")
+
+[node name="Fish" type="Node3D"]
+
+[node name="fish" parent="." instance=ExtResource("1_mv5i1")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0427301, 0, -0.999087, 0, 1, 0, 0.999087, 0, -0.0427301, -0.270139, 0.0566968, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(0.999123, 0.0418756, 4.05855e-08, 4.12296e-08, -1.45192e-08, -1, -0.0418757, 0.999123, -1.6233e-08, -0.00685456, 0, -0.160269)
+mesh = SubResource("PlaneMesh_ip8er")
+surface_material_override/0 = SubResource("ShaderMaterial_ln54o")

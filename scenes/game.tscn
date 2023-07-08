@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://xpa6twp0vrls"]
+
+[ext_resource type="PackedScene" uid="uid://bdgx75xx62o4k" path="res://scenes/fish.tscn" id="1_srdfm"]
+[ext_resource type="PackedScene" uid="uid://btxf33gocej4t" path="res://models/world.blend" id="2_vdpgc"]
+
+[sub_resource type="Environment" id="Environment_6oesd"]
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Game" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6oesd")
+
+[node name="world" parent="." instance=ExtResource("2_vdpgc")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0895201, 0.995985, 0, -0.995985, 0.0895201, 0, 42.5198, 0)
+
+[node name="Fish" parent="." instance=ExtResource("1_srdfm")]
+transform = Transform3D(0.517639, 0, -0.855599, 0, 1, 0, 0.855599, 0, 0.517639, 0, 0, 0)
