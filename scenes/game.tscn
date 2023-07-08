@@ -12,9 +12,10 @@ ambient_light_color = Color(1, 1, 1, 1)
 environment = SubResource("Environment_6oesd")
 
 [node name="world" parent="." instance=ExtResource("2_vdpgc")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 2, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0895201, 0.995985, 0, -0.995985, 0.0895201, 0, 42.5198, 0)
 
 [node name="Fish" parent="." instance=ExtResource("1_srdfm")]
-transform = Transform3D(0.517639, 0, -0.855599, 0, 1, 0, 0.855599, 0, 0.517639, 0, 0, 0)
+transform = Transform3D(0.517639, 0, -0.855599, 0, 1, 0, 0.855599, 0, 0.517639, -0.00790173, 0, 0)
