@@ -6,6 +6,10 @@ extends CharacterBody3D
 @export var vert_speed = 60
 @export var max_tilt = 0.2
 @onready var color_rect = $ColorRect
+@export var HUNGER_LOSS = 3
+@export var HUNGER_PLUS = 20
+
+@onready var hunger : ProgressBar = $Hunger
 
 var is_playing_minigame = false
 var current_rot = 0
@@ -17,8 +21,12 @@ var rot_ammount = 300
 
 @onready var track_dot = $TextureProgressBar/TrackDot
 
+var current_food
+
+var hunger_level = 90.0
+
 func _ready():
-	pass # Replace with function body.
+	hunger.value = hunger_level
 
 func start_playing():
 	color_rect.visible = true
@@ -31,7 +39,18 @@ func stop_playing():
 	color_rect.visible = false
 	texture_progress_bar.visible = false
 	is_playing_minigame = false
-	chomp_sound.play()
+	if current_food:
+		current_food.queue_free()
+	
+	print(fmod(track_dot.rotation_degrees, 360))
+	print(texture_progress_bar.value)
+	
+	if fmod(track_dot.rotation_degrees, 360) > texture_progress_bar.value:
+		print("You lose")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	else:
+		hunger_level += HUNGER_PLUS
+		chomp_sound.play()
 		
 func play_game(delta):
 	track_dot.rotation_degrees = current_rot
@@ -41,6 +60,12 @@ func play_game(delta):
 		stop_playing()
 	
 func _process(delta):
+	hunger_level = hunger_level - (HUNGER_LOSS * delta)
+	
+	hunger.value = hunger_level
+	if hunger_level <= 0.1:
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	
 	if is_playing_minigame:
 		play_game(delta)
 		return
@@ -73,5 +98,6 @@ func _process(delta):
 	move_and_slide()
 
 
-func _on_area_3d_area_entered(area):
+func _on_area_3d_area_entered(area : Area3D):
+	current_food = area.get_parent()
 	start_playing()

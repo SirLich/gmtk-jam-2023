@@ -8,6 +8,7 @@
 radius = 0.373261
 
 [node name="Hook" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.03073, 0)
 script = ExtResource("1_gqp7v")
 
 [node name="Area3D" type="Area3D" parent="."]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://esqfxr7qt4v1"]
+
+[ext_resource type="Texture2D" uid="uid://33hwyx5qtjaw" path="res://images/cover_image.png" id="1_3wpiq"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_fe1yh"]
+[ext_resource type="FontFile" uid="uid://uihym1dt1t4w" path="res://Font/Big Moka.ttf" id="2_h6mav"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_usmui"]
+line_spacing = 0.0
+font = ExtResource("2_h6mav")
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_cevg0"]
+line_spacing = 0.0
+font = ExtResource("2_h6mav")
+font_size = 30
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe1yh")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 1178.0
+offset_bottom = 662.0
+texture = ExtResource("1_3wpiq")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 32.0
+offset_right = 1035.0
+offset_bottom = 169.0
+text = "YOU are the fish"
+label_settings = SubResource("LabelSettings_usmui")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 151.0
+offset_right = 1055.0
+offset_bottom = 288.0
+text = "Enjoy :)"
+label_settings = SubResource("LabelSettings_cevg0")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 511.0
+offset_right = 741.0
+offset_bottom = 597.0
+theme_override_fonts/font = ExtResource("2_h6mav")
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]

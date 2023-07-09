@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt13fkjmqqv8g"]
+
+[ext_resource type="Texture2D" uid="uid://33hwyx5qtjaw" path="res://images/cover_image.png" id="1_qxltf"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(1344, 756)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_qxltf")
+expand_mode = 1
