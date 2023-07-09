@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdgx75xx62o4k"]
+
+[ext_resource type="Script" path="res://scenes/fish.gd" id="1_ihif3"]
+[ext_resource type="PackedScene" uid="uid://kpoodi2a1tf3" path="res://models/fish.blend" id="1_mv5i1"]
+[ext_resource type="Shader" path="res://shaders/test.gdshader" id="3_eopfb"]
+[ext_resource type="Texture2D" uid="uid://dxxgo3kpcss2r" path="res://images/worm_gray.png" id="4_pcca2"]
+[ext_resource type="Texture2D" uid="uid://b7jfeql355sxy" path="res://images/worm_background.png" id="5_y6xlp"]
+[ext_resource type="Texture2D" uid="uid://cbldkuv8d7vtf" path="res://images/hook.png" id="6_kle0e"]
+[ext_resource type="Texture2D" uid="uid://pvm2jmvlxtfr" path="res://images/track_dot.png" id="7_hr2u7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a4jxp"]
+radius = 0.175348
+
+[sub_resource type="QuadMesh" id="QuadMesh_076vm"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ln54o"]
+render_priority = 0
+shader = ExtResource("3_eopfb")
+shader_parameter/near_tint = Color(0.203922, 0.533333, 0.752941, 0.2)
+shader_parameter/far_tint = Color(0.168627, 0.254902, 0.223529, 0.560784)
+shader_parameter/end_tint = Color(0.0941176, 0.0941176, 0.00784314, 0.2)
+shader_parameter/sky_tint = Color(0.188235, 0.32549, 0.266667, 0.2)
+shader_parameter/background_blur = 3.0
+shader_parameter/view_distance = 12.0
+shader_parameter/end_distance = 20.0
+shader_parameter/size = 15.0
+
+[node name="Fish" type="CharacterBody3D"]
+script = ExtResource("1_ihif3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_a4jxp")
+
+[node name="fish" parent="." instance=ExtResource("1_mv5i1")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+
+[node name="fish" parent="fish" index="0"]
+"blend_shapes/Key 1" = 0.987965
+"blend_shapes/Key 2" = 0.0120353
+
+[node name="AnimationPlayer" parent="fish" index="1"]
+autoplay = "swim2"
+speed_scale = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0416361, 0.204033, -0.978078, 0.0140161, 0.97895, 0.203619, 0.999035, -0.00523098, -0.0436194, -1.1629, 0.331035, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(0.999123, 0.0418756, 4.00469e-08, 4.09782e-08, -1.48821e-08, -1, -0.0418757, 0.999123, -1.73313e-08, -0.017484, 7.45058e-09, -0.408799)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_076vm")
+surface_material_override/0 = SubResource("ShaderMaterial_ln54o")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+max_value = 360.0
+value = 300.0
+fill_mode = 4
+texture_under = ExtResource("4_pcca2")
+texture_progress = ExtResource("5_y6xlp")
+tint_progress = Color(1, 0.764706, 0.992157, 1)
+
+[node name="TrackDot" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(248, 253)
+texture = ExtResource("7_hr2u7")
+
+[node name="Hook" type="Sprite2D" parent="TextureProgressBar"]
+position = Vector2(50, 1.52588e-05)
+rotation = 0.190825
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("6_kle0e")
+
+[editable path="fish"]
