@@ -65,6 +65,7 @@ mesh = SubResource("QuadMesh_076vm")
 surface_material_override/0 = SubResource("ShaderMaterial_ln54o")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -74,6 +75,7 @@ size_flags_vertical = 4
 color = Color(0.321569, 0.321569, 0.321569, 0.592157)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

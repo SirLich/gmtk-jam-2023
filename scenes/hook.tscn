@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctc1h4acbx0fm"]
+[gd_scene load_steps=5 format=3 uid="uid://ctc1h4acbx0fm"]
 
 [ext_resource type="PackedScene" uid="uid://cfchw2r831ohs" path="res://models/hook.glb" id="1_7e66p"]
 [ext_resource type="Script" path="res://scenes/hook.gd" id="1_gqp7v"]
+[ext_resource type="AudioStream" uid="uid://demjhxf72cyco" path="res://sounds/splash.ogg" id="3_axa8g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r4ek3"]
 radius = 0.373261
@@ -10,14 +11,29 @@ radius = 0.373261
 script = ExtResource("1_gqp7v")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.4658, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00294358, 0, -0.000434518)
 shape = SubResource("SphereShape3D_r4ek3")
 
 [node name="hook" parent="." instance=ExtResource("1_7e66p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.4658, 0)
 
-[node name="BezierCurve" parent="hook" index="0"]
-"blend_shapes/Key 1" = 0.655955
+[node name="UpTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="DeleteTimer" type="Timer" parent="UpTimer"]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_axa8g")
+
+[connection signal="timeout" from="UpTimer" to="." method="_on_up_timer_timeout"]
+[connection signal="timeout" from="UpTimer/DeleteTimer" to="." method="_on_delete_timer_timeout"]
 
 [editable path="hook"]

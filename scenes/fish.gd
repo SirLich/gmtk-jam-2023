@@ -37,7 +37,7 @@ func play_game(delta):
 	track_dot.rotation_degrees = current_rot
 	current_rot += fmod((rot_ammount * delta), 360)
 	
-	if Input.is_action_just_released("boost"):
+	if Input.is_action_just_released("eat"):
 		stop_playing()
 	
 func _process(delta):
