@@ -67,7 +67,7 @@ void fragment() {
 	
 	ALBEDO = final_render.rgb;
 	
-	if (world_position.y > 0.0f)
+	if (world_position.y > 4.0f)
 	{
 		vec4 sky_render = textureLod(screen_texture, SCREEN_UV, 5);
 		sky_render = sky_render * sky_tint;

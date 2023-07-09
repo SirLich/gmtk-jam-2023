@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdgx75xx62o4k"]
+[gd_scene load_steps=7 format=3 uid="uid://bdgx75xx62o4k"]
 
 [ext_resource type="Script" path="res://scenes/fish.gd" id="1_ihif3"]
 [ext_resource type="PackedScene" uid="uid://kpoodi2a1tf3" path="res://models/fish.blend" id="1_mv5i1"]
@@ -23,13 +23,6 @@ shader_parameter/view_distance = 10.0
 shader_parameter/end_distance = 25.0
 shader_parameter/size = 0.0
 
-[sub_resource type="Gradient" id="Gradient_8bhb5"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_qpfmd"]
-gradient = SubResource("Gradient_8bhb5")
-fill_from = Vector2(1, 0.564103)
-fill_to = Vector2(0, 0.508547)
-
 [node name="Fish" type="CharacterBody3D"]
 script = ExtResource("1_ihif3")
 
@@ -38,6 +31,14 @@ shape = SubResource("SphereShape3D_a4jxp")
 
 [node name="fish" parent="." instance=ExtResource("1_mv5i1")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="fish" parent="fish" index="0"]
+"blend_shapes/Key 1" = 0.02527
+"blend_shapes/Key 2" = 0.97473
+
+[node name="AnimationPlayer" parent="fish" index="1"]
+autoplay = "swim2"
+speed_scale = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.0424302, 0.118265, -0.992075, 0.00505349, 0.992982, 0.118157, 0.999087, -9.30048e-10, -0.0427301, -0.664612, 0.182908, 0)
@@ -48,12 +49,4 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_076vm")
 surface_material_override/0 = SubResource("ShaderMaterial_ln54o")
 
-[node name="TextureRect" type="TextureRect" parent="Camera3D"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_qpfmd")
+[editable path="fish"]
