@@ -17,6 +17,7 @@ shader = ExtResource("3_eopfb")
 shader_parameter/near_tint = Color(0.439216, 0.560784, 0.247059, 0.2)
 shader_parameter/far_tint = Color(0.341176, 0.294118, 0.121569, 0.560784)
 shader_parameter/end_tint = Color(0.0117647, 0.054902, 0.0745098, 0.2)
+shader_parameter/sky_tint = Color(0.188235, 0.32549, 0.266667, 0.2)
 shader_parameter/background_blur = 3.0
 shader_parameter/view_distance = 10.0
 shader_parameter/end_distance = 25.0

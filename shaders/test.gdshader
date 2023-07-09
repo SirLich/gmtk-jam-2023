@@ -7,6 +7,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_l
 uniform vec4 near_tint : source_color = vec4(0.4, 0.6, 1, 0.2);
 uniform vec4 far_tint : source_color = vec4(0.0, 0.1, 1.0, 0.1);
 uniform vec4 end_tint : source_color = vec4(0.4, 0.6, 1, 0.2);
+uniform vec4 sky_tint : source_color = vec4(0.4, 0.6, 1, 0.2);
 
 uniform float background_blur = 6.0;
 uniform float view_distance = 50.0f;
@@ -66,5 +67,12 @@ void fragment() {
 	
 	ALBEDO = final_render.rgb;
 	
+	if (world_position.y > 0.0f)
+	{
+		vec4 sky_render = textureLod(screen_texture, SCREEN_UV, 5);
+		sky_render = sky_render * sky_tint;
+		ALBEDO = sky_render.rgb;
+	}
+
 //	ALBEDO = vec3(dis);
 }
