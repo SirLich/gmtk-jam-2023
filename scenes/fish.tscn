@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="3_eopfb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a4jxp"]
-radius = 1.0
+radius = 0.175348
 
 [sub_resource type="QuadMesh" id="QuadMesh_076vm"]
 flip_faces = true
@@ -14,14 +14,14 @@ size = Vector2(2, 2)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ln54o"]
 render_priority = 0
 shader = ExtResource("3_eopfb")
-shader_parameter/near_tint = Color(0.439216, 0.560784, 0.247059, 0.2)
-shader_parameter/far_tint = Color(0.341176, 0.294118, 0.121569, 0.560784)
-shader_parameter/end_tint = Color(0.0117647, 0.054902, 0.0745098, 0.2)
+shader_parameter/near_tint = Color(0.203922, 0.533333, 0.752941, 0.2)
+shader_parameter/far_tint = Color(0.168627, 0.254902, 0.223529, 0.560784)
+shader_parameter/end_tint = Color(0.0941176, 0.0941176, 0.00784314, 0.2)
 shader_parameter/sky_tint = Color(0.188235, 0.32549, 0.266667, 0.2)
 shader_parameter/background_blur = 3.0
-shader_parameter/view_distance = 10.0
-shader_parameter/end_distance = 25.0
-shader_parameter/size = 0.0
+shader_parameter/view_distance = 12.0
+shader_parameter/end_distance = 20.0
+shader_parameter/size = 15.0
 
 [node name="Fish" type="CharacterBody3D"]
 script = ExtResource("1_ihif3")
@@ -30,21 +30,20 @@ script = ExtResource("1_ihif3")
 shape = SubResource("SphereShape3D_a4jxp")
 
 [node name="fish" parent="." instance=ExtResource("1_mv5i1")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="fish" parent="fish" index="0"]
-"blend_shapes/Key 1" = 0.635862
-"blend_shapes/Key 2" = 0.364138
+"blend_shapes/Key 1" = 1.0
 
 [node name="AnimationPlayer" parent="fish" index="1"]
 autoplay = "swim2"
 speed_scale = 0.2
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.0424302, 0.118265, -0.992075, 0.00505349, 0.992982, 0.118157, 0.999087, -1.67791e-08, -0.0427301, -0.461735, 0.124863, 0)
+transform = Transform3D(-0.0416361, 0.204033, -0.978078, 0.0140161, 0.97895, 0.203619, 0.999035, -0.00523098, -0.0436194, -1.1629, 0.331035, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(0.999123, 0.0418756, 4.0245e-08, 4.10728e-08, -1.48872e-08, -1, -0.0418757, 0.999123, -1.73593e-08, -0.017484, 7.45058e-09, -0.408799)
+transform = Transform3D(0.999123, 0.0418756, 4.00469e-08, 4.09782e-08, -1.48821e-08, -1, -0.0418757, 0.999123, -1.73313e-08, -0.017484, 7.45058e-09, -0.408799)
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_076vm")
 surface_material_override/0 = SubResource("ShaderMaterial_ln54o")

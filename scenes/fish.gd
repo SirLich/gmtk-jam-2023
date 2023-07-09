@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
-@export var speed = 100
-@export var boost_speed = 300
+@export var speed = 80
+@export var boost_speed = 200
 @export var turn_speed = 0.02
-@export var vert_speed = 200
+@export var vert_speed = 60
 @export var max_tilt = 0.2
 
 
@@ -23,6 +23,8 @@ func _process(delta):
 		use_speed = boost_speed;
 	else:
 		anim_player.speed_scale = 0.2
+	if Input.is_action_pressed("slow"):
+		use_speed = 30
 	
 	var facing = global_transform.basis.x
 	velocity = facing * use_speed * delta;
