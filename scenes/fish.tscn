@@ -40,7 +40,7 @@ shadow_color = Color(1, 1, 1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_cfc5b"]
 font = ExtResource("9_haa81")
-font_size = 32
+font_size = 24
 
 [node name="Fish" type="CharacterBody3D"]
 script = ExtResource("1_ihif3")
@@ -149,14 +149,31 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -72.0
-offset_bottom = -24.0
+offset_left = 1.0
+offset_top = -58.0
+offset_right = 1.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Hunger"
 label_settings = SubResource("LabelSettings_cfc5b")
 horizontal_alignment = 1
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_top = 471.0
+offset_right = 283.0
+offset_bottom = 590.0
+theme_override_fonts/normal_font = ExtResource("9_haa81")
+text = " - WASD to move
+ - SPACE to boost
+ - SHIFT to go slow"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="fish"]

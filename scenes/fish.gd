@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var vert_speed = 60
 @export var max_tilt = 0.2
 @onready var color_rect = $ColorRect
-@export var HUNGER_LOSS = 3
+@export var HUNGER_LOSS = 0.5
 @export var HUNGER_PLUS = 20
 
 @onready var hunger : ProgressBar = $Hunger
@@ -49,7 +49,9 @@ func stop_playing():
 		print("You lose")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	else:
+		texture_progress_bar.value = texture_progress_bar.value * 0.9
 		hunger_level += HUNGER_PLUS
+		hunger_level = max(hunger_level, 100)
 		chomp_sound.play()
 		
 func play_game(delta):
@@ -101,3 +103,7 @@ func _process(delta):
 func _on_area_3d_area_entered(area : Area3D):
 	current_food = area.get_parent()
 	start_playing()
+
+
+func _on_timer_timeout():
+	HUNGER_LOSS += 0.5

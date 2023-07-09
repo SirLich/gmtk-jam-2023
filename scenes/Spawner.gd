@@ -2,9 +2,14 @@ extends Node3D
 
 @export var hooked_scene : PackedScene
 
+var positions
+var current = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	positions = $Positions.get_children()
+	positions.shuffle
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,8 +17,9 @@ func _process(delta):
 	pass
 
 func get_random_pos():
-	var positions = $Positions
-	return positions.get_children().pick_random().global_transform
+	return positions[current]
+	current += 1
+	current = current % len(positions)
 	
 func _on_timer_timeout():
 	var new_hook : Node3D = hooked_scene.instantiate()

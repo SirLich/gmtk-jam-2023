@@ -47,7 +47,8 @@ offset_left = 183.0
 offset_top = 151.0
 offset_right = 1055.0
 offset_bottom = 288.0
-text = "Enjoy :)"
+text = "Eat the bait from the fishermans hook,
+or perish."
 label_settings = SubResource("LabelSettings_cevg0")
 horizontal_alignment = 1
 
