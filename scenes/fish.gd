@@ -5,12 +5,15 @@ extends CharacterBody3D
 @export var turn_speed = 0.02
 @export var vert_speed = 60
 @export var max_tilt = 0.2
+@onready var color_rect = $ColorRect
 
 var is_playing_minigame = false
 var current_rot = 0
 var rot_ammount = 300
 
 @onready var anim_player : AnimationPlayer = find_child("AnimationPlayer", true, false)
+@onready var chomp_sound = $ChompSound
+@onready var texture_progress_bar = $TextureProgressBar
 
 @onready var track_dot = $TextureProgressBar/TrackDot
 
@@ -18,12 +21,24 @@ func _ready():
 	pass # Replace with function body.
 
 func start_playing():
+	color_rect.visible = true
+	texture_progress_bar.visible = true
 	current_rot = randi_range(0, 360)
 	is_playing_minigame = true
+	chomp_sound.play()
 	
+func stop_playing():
+	color_rect.visible = false
+	texture_progress_bar.visible = false
+	is_playing_minigame = false
+	chomp_sound.play()
+		
 func play_game(delta):
 	track_dot.rotation_degrees = current_rot
 	current_rot += fmod((rot_ammount * delta), 360)
+	
+	if Input.is_action_just_released("boost"):
+		stop_playing()
 	
 func _process(delta):
 	if is_playing_minigame:
@@ -56,3 +71,7 @@ func _process(delta):
 		velocity += (Vector3.UP * -vert_speed * delta)
 		
 	move_and_slide()
+
+
+func _on_area_3d_area_entered(area):
+	start_playing()

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctc1h4acbx0fm"]
+
+[ext_resource type="PackedScene" uid="uid://cfchw2r831ohs" path="res://models/hook.glb" id="1_7e66p"]
+[ext_resource type="Script" path="res://scenes/hook.gd" id="1_gqp7v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r4ek3"]
+radius = 0.373261
+
+[node name="Hook" type="Node3D"]
+script = ExtResource("1_gqp7v")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00294358, 0, -0.000434518)
+shape = SubResource("SphereShape3D_r4ek3")
+
+[node name="hook" parent="." instance=ExtResource("1_7e66p")]
+
+[node name="BezierCurve" parent="hook" index="0"]
+"blend_shapes/Key 1" = 0.655955
+
+[editable path="hook"]
