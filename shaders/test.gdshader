@@ -60,7 +60,7 @@ void fragment() {
 	
 	final_render = blend(final_render, end_tint, end_depth);
 	
-	float dis = 0.8 - length(UV - vec2(0.5)) - 0.2;
+	float dis = 0.9 - length(UV - vec2(0.5)) - 0.2;
 	
 	
 	final_render = final_render * dis;
