@@ -9,7 +9,7 @@ var current = 0
 func _ready():
 	randomize()
 	positions = $Positions.get_children()
-	positions.shuffle
+	positions.shuffle()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,9 +17,10 @@ func _process(delta):
 	pass
 
 func get_random_pos():
-	return positions[current]
 	current += 1
 	current = current % len(positions)
+	
+	return positions[current].global_transform
 	
 func _on_timer_timeout():
 	var new_hook : Node3D = hooked_scene.instantiate()
