@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var max_tilt = 0.2
 @onready var color_rect = $ColorRect
 @export var HUNGER_LOSS = 0.5
-@export var HUNGER_PLUS = 20
+@export var HUNGER_PLUS = 10
 
 @onready var hunger : ProgressBar = $Hunger
 
@@ -39,17 +39,16 @@ func stop_playing():
 	color_rect.visible = false
 	texture_progress_bar.visible = false
 	is_playing_minigame = false
-	if current_food:
+	if is_instance_valid(current_food):
 		current_food.queue_free()
 	
 	print(fmod(track_dot.rotation_degrees, 360))
 	print(texture_progress_bar.value)
 	
 	if fmod(track_dot.rotation_degrees, 360) > texture_progress_bar.value:
-		print("You lose")
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		hunger_level -= (HUNGER_PLUS * 3)
 	else:
-		texture_progress_bar.value = texture_progress_bar.value * 0.9
+		texture_progress_bar.value = texture_progress_bar.value * 0.90
 		hunger_level += HUNGER_PLUS
 		hunger_level = max(hunger_level, 100)
 		chomp_sound.play()
