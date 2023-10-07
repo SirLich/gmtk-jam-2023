@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bdgx75xx62o4k"]
 
 [ext_resource type="Script" path="res://scenes/fish.gd" id="1_ihif3"]
-[ext_resource type="PackedScene" uid="uid://kpoodi2a1tf3" path="res://models/fish.blend" id="1_mv5i1"]
+[ext_resource type="PackedScene" uid="uid://j1ta25xedw67" path="res://models/custom_fish.blend" id="2_xww4a"]
 [ext_resource type="Shader" path="res://shaders/test.gdshader" id="3_eopfb"]
 [ext_resource type="Texture2D" uid="uid://dxxgo3kpcss2r" path="res://images/worm_gray.png" id="4_pcca2"]
 [ext_resource type="Texture2D" uid="uid://b7jfeql355sxy" path="res://images/worm_background.png" id="5_y6xlp"]
@@ -54,15 +54,7 @@ shape = SubResource("SphereShape3D_43vvx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_a4jxp")
 
-[node name="fish" parent="." instance=ExtResource("1_mv5i1")]
-transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
-
-[node name="fish" parent="fish" index="0"]
-"blend_shapes/Key 1" = 1.0
-
-[node name="AnimationPlayer" parent="fish" index="1"]
-autoplay = "swim2"
-speed_scale = 0.2
+[node name="custom_fish" parent="." instance=ExtResource("2_xww4a")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.0416361, 0.204033, -0.978078, 0.0140161, 0.97895, 0.203619, 0.999035, -0.00523098, -0.0436194, -1.1629, 0.331035, 0)
@@ -173,7 +165,9 @@ text = " - WASD to move
 wait_time = 10.0
 autostart = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
-[editable path="fish"]
+[editable path="custom_fish"]
